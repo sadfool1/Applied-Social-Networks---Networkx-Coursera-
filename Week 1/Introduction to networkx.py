@@ -7,6 +7,7 @@ Created on Tue May 26 22:15:43 2020
 """
 
 import networkx as nx
+
 G = nx.DiGraph()
 
 "Adding Attribute"
@@ -20,5 +21,10 @@ H = nx.MultiGraph()
 H.add_edge("A", "B", relation = "friend")
 H.add_edge("A", "B", relation = "neighbour")
 
+#ACCESSING ATTRIBUTES OF A SPECIFC EDGE
+#H.edge["A"]["B"] --> ORDER does not matter i.e syntax.[B][A] = syntax.[A][B] However this does not work for directed weighted network
+#OUT : {"relation": "family", "weight": 6}
+
+I.nx.MultiDiGraph() #This is directed multigraph
 
 
