@@ -5,6 +5,8 @@ Created on Tue May 26 22:15:43 2020
 
 @author: jameselijah
 """
+import numpy as np
+import pandas as pd
 
 import networkx as nx
 
@@ -55,3 +57,23 @@ print (bipartite.is_bipartite_node_set(B,X)) #check if this set is in B
 
 ##Bipartitd weighted graph projection 
 
+
+"""
+==========================================================
+Ex. Use NetworkX to construct the bipartite weighted graph 
+projection of nodes A,B,C,D,E,F and find the weight of 
+the edge (A,C).
+
+What is the weight of the edge (A,C)?
+==========================================================
+"""
+import networkx as nx
+from networkx.algorithms import bipartite
+
+B = nx.Graph()
+B.add_edges_from([('A', 'G'),('A','I'), ('B','H'), ('C', 'G'), ('C', 'I'),('D', 'H'), ('E', 'I'), ('F', 'G'), ('F', 'J')])
+X1 = set(['A', 'B', 'C', 'D', 'E', 'F'])
+P = bipartite.weighted_projected_graph(B,X1)
+print (P.get_edge_data("A", "C"))
+
+nx.draw_networkx(B)
