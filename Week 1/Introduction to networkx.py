@@ -25,6 +25,33 @@ H.add_edge("A", "B", relation = "neighbour")
 #H.edge["A"]["B"] --> ORDER does not matter i.e syntax.[B][A] = syntax.[A][B] However this does not work for directed weighted network
 #OUT : {"relation": "family", "weight": 6}
 
-I.nx.MultiDiGraph() #This is directed multigraph
+#I.nx.MultiDiGraph() #This is directed multigraph
 
+"""
+Bipartite Graph: a graph whose nodes can be split into 
+2 sets L & R and every edge connects a node in L with 
+a node in R.
+"""
+
+from networkx.algorithms import bipartite
+
+B = nx.Graph() #no separate class for bipartite graphs
+B.add_nodes_from (["A","B", "C", "D"], bipartite = 0) #LABEL ONE SET OF NODES ()
+B.add_nodes_from([1,2,3,4], bipartite = 1) #label other set of nodes 1
+B.add_edges_from ([("A",1),("B",1),("C",1), ("C", 3), ("D",2),("E", 3), ("E", 4)])
+
+print (bipartite.is_bipartite(B)) #query if B is bipartite
+B.add_edge("A", "B") #this breaks the bipartition and returns False in the next line
+print (bipartite.is_bipartite(B))
+B.remove_edge("A", "B") #removes the edge
+print (bipartite.is_bipartite(B))
+
+X = set([1,2,3,4])
+print (bipartite.is_bipartite_node_set(B,X)) #check if this set is in B
+X = set(["A","B","C","D","E"])
+print (bipartite.is_bipartite_node_set(B,X)) #check if this set is in B
+
+## PROJECT GRAPH
+
+##Bipartitd weighted graph projection 
 
